@@ -20,10 +20,11 @@ def load_positions(file_path=None):
     """
     file_path = Path(file_path) if file_path else DATA_DIR / "Storage_Location.csv"
     df = pd.read_csv(file_path)
+
     df.columns = df.columns.str.strip()
     required_columns = {"originalLocation", "position"}
     missing = required_columns - set(df.columns)
-
+    df=df[df['z']==1]
     if missing:
         raise ValueError(
             f"Missing columns in Positions file: {sorted(missing)}"
@@ -94,8 +95,8 @@ def load_support_points(file_path=None):
 
     for col in ["X", "Y", "Z"]:
         df[col] = pd.to_numeric(parsed[col], errors="coerce")
-
-    _validate_coordinates(df, "SupportPoints")
+    df=df[df['Z']==1]
+    _validate_coordinates(df, "Support_Points_Navigation")
 
     return df
 
