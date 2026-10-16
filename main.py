@@ -1,5 +1,5 @@
 
-from src.data_loader.load_data import load_all_data
+from src import load_all_data
 
 def main():
     data = load_all_data()

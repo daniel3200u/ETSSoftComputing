@@ -8,7 +8,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DATA_DIR = PROJECT_ROOT / "Order Picking Dataset from a Warehouse of a Footwear Manufacturing Company"
 
 
-def load_positions(file_path=None, sheet_name="Positions"):
+def load_positions(file_path=None):
     """
     Load storage locations and parse their coordinates.
 
@@ -19,7 +19,7 @@ def load_positions(file_path=None, sheet_name="Positions"):
         H-06-13, "534, 688, 1"
     """
     file_path = Path(file_path) if file_path else DATA_DIR / "Storage_Location.csv"
-    df = pd.read_csv(file_path, sheet_name=sheet_name)
+    df = pd.read_csv(file_path)
     df.columns = df.columns.str.strip()
     required_columns = {"originalLocation", "position"}
     missing = required_columns - set(df.columns)
@@ -66,9 +66,8 @@ def load_support_points(file_path=None):
         else DATA_DIR / "Support_Points_Navigation.csv"
     )
 
-    df = pd.read_excel(file_path)
+    df = pd.read_csv(file_path, sep=';')
     df.columns = df.columns.str.strip()
-
     required_columns = {"points_specified", "labels"}
     missing = required_columns - set(df.columns)
 
