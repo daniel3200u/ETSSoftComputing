@@ -1,6 +1,5 @@
-pandas
-numpy
-openpyxl
-matplotlib
-networkx
-pytest
+streamlit>=1.30.0
+pandas>=2.0.0
+numpy>=1.24.0
+matplotlib>=3.7.0
+
